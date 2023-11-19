@@ -1,0 +1,4 @@
+id,created_at,name,description,days_between_meets,days_notication_headroom,days_of_week,image_url
+550e8400-e29b-41d4-a716-446655440000,now(),group 1,my first group,7,2,,
+550e8400-e29b-41d4-a716-446655440001,now(),group 2,my second ,14,2,,
+550e8400-e29b-41d4-a716-446655440002,now(),group 3,my third group,7,3,,
