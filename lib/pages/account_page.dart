@@ -164,32 +164,44 @@ class _AccountPageState extends State<AccountPage> {
       appBar: AppBar(title: const Text('Profile')),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
-          : ListView(
-              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
-              children: [
-                Avatar(
-                  imageUrl: _avatarUrl,
-                  onUpload: _onUpload,
+          : Column(
+            children: [
+              ListView(
+                  padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+                  children: [
+                    Avatar(
+                      imageUrl: _avatarUrl,
+                      onUpload: _onUpload,
+                    ),
+                    const SizedBox(height: 18),
+                    TextFormField(
+                      controller: _usernameController,
+                      decoration: const InputDecoration(labelText: 'User Name'),
+                    ),
+                    const SizedBox(height: 18),
+                    TextFormField(
+                      controller: _websiteController,
+                      decoration: const InputDecoration(labelText: 'Website'),
+                    ),
+                    const SizedBox(height: 18),
+                    ElevatedButton(
+                      onPressed: _loading ? null : _updateProfile,
+                      child: Text(_loading ? 'Saving...' : 'Update'),
+                    ),
+                    const SizedBox(height: 18),
+                    TextButton(onPressed: _signOut, child: const Text('Sign Out')),
+                  ],
                 ),
-                const SizedBox(height: 18),
-                TextFormField(
-                  controller: _usernameController,
-                  decoration: const InputDecoration(labelText: 'User Name'),
-                ),
-                const SizedBox(height: 18),
-                TextFormField(
-                  controller: _websiteController,
-                  decoration: const InputDecoration(labelText: 'Website'),
-                ),
-                const SizedBox(height: 18),
-                ElevatedButton(
-                  onPressed: _loading ? null : _updateProfile,
-                  child: Text(_loading ? 'Saving...' : 'Update'),
-                ),
-                const SizedBox(height: 18),
-                TextButton(onPressed: _signOut, child: const Text('Sign Out')),
-              ],
-            ),
+              ElevatedButton(
+                child: const Text("Groups"),
+                onPressed: () { 
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: context => GroupsPage())
+                    )
+                  },
+                )
+            ])
     );
   }
 }
