@@ -26,7 +26,7 @@ class _AccountPageState extends State<AccountPage> {
     try {
       final userId = supabase.auth.currentUser!.id;
       final data = await supabase
-          .from('profiles')
+          .from('users')
           .select<Map<String, dynamic>>()
           .eq('id', userId)
           .single();
@@ -67,7 +67,7 @@ class _AccountPageState extends State<AccountPage> {
       'updated_at': DateTime.now().toIso8601String(),
     };
     try {
-      await supabase.from('profiles').upsert(updates);
+      await supabase.from('users').upsert(updates);
       if (mounted) {
         const SnackBar(
           content: Text('Successfully updated profile!'),
@@ -116,7 +116,7 @@ class _AccountPageState extends State<AccountPage> {
   Future<void> _onUpload(String imageUrl) async {
     try {
       final userId = supabase.auth.currentUser!.id;
-      await supabase.from('profiles').upsert({
+      await supabase.from('users').upsert({
         'id': userId,
         'avatar_url': imageUrl,
       });
