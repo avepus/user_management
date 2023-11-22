@@ -11,12 +11,14 @@ Future<void> main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1iZmZ1eXBjeHVtbWhocnhyaWpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4NDkyMDUsImV4cCI6MjAxNTQyNTIwNX0.8J5ZPeSNoJ0HJFCjw-mFzTp9nqFrGR4rjWa5BEA-NQE',
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,9 +37,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/groups',
       routes: <String, WidgetBuilder>{
         '/': (_) => const SplashPage(),
+        //'/': (_) => const GroupsPage(),
+        //'/login': (_) => const GroupsPage(),
         '/login': (_) => const LoginPage(),
         '/account': (_) => const AccountPage(),
         '/groups': (_) => const GroupsPage(),
